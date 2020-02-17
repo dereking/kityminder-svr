@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+import "google/api/annotations.proto";
+
+option java_multiple_files = true;
+option java_package = "gmainder.pb";
+option java_outer_classname = "JwtService";
+
+package gmainder.pb;
+
+
+message ReqLogin {
+
+    string name = 1;
+    string psw = 2;
+}
+
+
+
+service JwtService {
+    rpc Login (LoginReq) returns (RpcRes){}
+
+    
+    rpc Echo(StringMessage) returns (StringMessage) {
+        option (google.api.http) = {
+            post: "/v1/example/echo"
+            body: "*"
+        };
+    }
+}

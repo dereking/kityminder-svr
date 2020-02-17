@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+
+
+option java_multiple_files = true;
+option java_package = "gmainder.pb";
+option java_outer_classname = "def";
+
+package gminder.pb;
+
+
+
+message RpcRes {
+    uint32 r = 1;
+    string msg = 2;
+}
