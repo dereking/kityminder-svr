@@ -8,14 +8,43 @@ option java_outer_classname = "JwtService";
 
 package gmainder.pb;
 
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
 
-message ReqLogin {
 
+enum FileType {
+    File =1;
+    Directory =2;
+}
+
+message ReqLogin { 
     string name = 1;
     string psw = 2;
 }
 
 
+message MinderFile {
+    string name =1;
+    string author =2;
+    google.protobuf.timestamp creatTime =3;
+    google.protobuf.timestamp modifyTime =4;
+
+    string data =5;
+}
+
+message DirReq {
+    string fullpath = 1;
+}
+
+message FileInfo {
+    string name =1;
+    string ext =2 ;
+    FileType type = 3; 
+    string hash=4;
+    string author =5;
+    google.protobuf.timestamp creatTime =6;
+    google.protobuf.timestamp modifyTime =7;
+}
 
 service JwtService {
     rpc Login (LoginReq) returns (RpcRes){}
@@ -27,4 +56,7 @@ service JwtService {
             body: "*"
         };
     }
+
+    rpc SaveMinder(MinderFile) returns (RpcRes){}
+    rpc Dir(DirReq) returns (RpcRes){}
 }
