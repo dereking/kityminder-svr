@@ -3,11 +3,10 @@ syntax = "proto3";
 
 
 option java_multiple_files = true;
-option java_package = "gmainder.pb";
+option java_package = "com.gree.gminder";
 option java_outer_classname = "def";
 
-package gminder.pb;
-
+package def;
 
 
 message RpcRes {

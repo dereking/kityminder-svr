@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.gree.user";
+option java_outer_classname = "jwt";
+
+package jwt;
+
+//import "google/api/annotations.proto";
+//import "google/protobuf/timestamp.proto";
+
+import "def.proto";
+
+ 
+message LoginReq { 
+    string name = 1;
+    string psw = 2;
+}
+
+  
+service JwtService {
+    rpc Login (LoginReq) returns (def.RpcRes){} 
+}

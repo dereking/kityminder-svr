@@ -1,0 +1,46 @@
+syntax = "proto3";
+ 
+
+option java_multiple_files = true;
+option java_package = "com.gree.gminder";
+option java_outer_classname = "cloud_storage";
+
+package cloud_storage;
+ 
+import "google/protobuf/timestamp.proto"; 
+import "def.proto";
+
+
+enum FileType { 
+    Directory =0;
+    File =1;
+} 
+
+
+message MinderFile {
+    string name =1;
+    string author =2;
+    google.protobuf.Timestamp creatTime =3;
+    google.protobuf.Timestamp modifyTime =4;
+
+    string data =5;
+}
+
+message DirReq {
+    string fullpath = 1;
+}
+
+message FileInfo {
+    string name =1;
+    string ext =2 ;
+    FileType type = 3; 
+    string hash=4;
+    string author =5;
+    google.protobuf.Timestamp creatTime =6;
+    google.protobuf.Timestamp modifyTime =7;
+}
+
+service CloudStorageService { 
+    rpc SaveMinder(MinderFile) returns (def.RpcRes){}
+    rpc Dir(DirReq) returns (def.RpcRes){}
+}
